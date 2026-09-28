@@ -1,0 +1,305 @@
+export type Part = {
+  id: string;
+  en: string;
+  ar?: string;
+  colorable?: boolean;
+  size?: { w: number; h: number };
+};
+
+export type SectionId =
+  | "sources"
+  | "protection"
+  | "contactors"
+  | "automation"
+  | "buttons"
+  | "sensors"
+  | "signaling"
+  | "loads"
+  | "wiring"
+  | "structure"
+  | "units";
+
+export type Section = {
+  id: SectionId;
+  en: string;
+  ar: string;
+  parts: Part[];
+};
+
+export const MCB_COLORS = [
+  "#f97316",
+  "#ef4444",
+  "#eab308",
+  "#3b82f6",
+  "#22c55e",
+  "#b45309",
+  "#1f2937",
+  "#e5e7eb",
+];
+
+export const SECTIONS: Section[] = [
+  {
+    id: "sources",
+    en: "Sources",
+    ar: "المصادر",
+    parts: [
+      { id: "gen", en: "Generator", ar: "مولّد" },
+      { id: "gen-photo", en: "Generator Photo", ar: "صورة مولّد" },
+      { id: "src-3ph", en: "3Φ Source", ar: "مصدر 3 فاز" },
+      { id: "src-1ph", en: "1Φ Source", ar: "مصدر 1 فاز" },
+      { id: "src-110", en: "110V AC Source", ar: "مصدر 110 فولت AC" },
+      { id: "n", en: "Neutral N", ar: "المحايد N" },
+      { id: "pe", en: "Earth PE", ar: "أرضي PE" },
+      { id: "solar", en: "Solar PV Array", ar: "ألواح شمسية" },
+      { id: "battery", en: "Battery Bank", ar: "بنك بطاريات" },
+      { id: "dc-source", en: "DC Source +/−", ar: "مصدر تيار مستمر" },
+      { id: "grid", en: "Grid / Pole", ar: "الشبكة الكهربائية" },
+      { id: "transformer", en: "Transformer", ar: "محول" },
+      { id: "ups", en: "UPS / Inverter", ar: "UPS / إنفرتر" },
+      { id: "pv-inverter", en: "Solar Inverter", ar: "إنفرتر شمسي" },
+      { id: "cap-bank", en: "Capacitor Bank", ar: "بنك مكثفات" },
+    ],
+  },
+  {
+    id: "protection",
+    en: "Protection",
+    ar: "الحماية",
+    parts: [
+      { id: "mcb-1", en: "MCB 1P", ar: "قاطع 1P", colorable: true },
+      { id: "mcb-2", en: "MCB 2P", ar: "قاطع 2P", colorable: true },
+      { id: "mcb-3", en: "MCB 3P", ar: "قاطع 3P", colorable: true },
+      { id: "mcb-4", en: "MCB 4P", ar: "قاطع 4P", colorable: true },
+      { id: "mccb3", en: "MCCB 3P", ar: "MCCB 3P" },
+      { id: "mccb4", en: "MCCB 4P", ar: "MCCB 4P" },
+      { id: "rccb2", en: "RCCB 2P", ar: "تسربي 2P" },
+      { id: "rccb4", en: "RCCB 4P", ar: "تسربي 4P" },
+      { id: "ebreaker", en: "electronicBreaker", ar: "قاطع إلكتروني" },
+      { id: "spd", en: "SPD", ar: "مانع صواعق" },
+      { id: "fuse", en: "Fuse", ar: "فيوز" },
+      { id: "overload", en: "Overload", ar: "أوفرلود" },
+      { id: "phasefail", en: "Phase Fail", ar: "فقد طور" },
+      { id: "phasesel", en: "Phase Selector", ar: "مبدّل أطوار" },
+      { id: "rcbo2", en: "RCBO 1P+N", ar: "RCBO 1P+N" },
+      { id: "rcbo4", en: "RCBO 4P", ar: "RCBO 4P" },
+      { id: "mpcb", en: "MPCB 3P", ar: "قاطع حماية موتور" },
+      { id: "isolator3", en: "Isolator 3P", ar: "فاصل حمل 3P" },
+      { id: "knife", en: "Knife Switch", ar: "سكين فصل" },
+      { id: "dc-breaker", en: "DC Breaker 2P", ar: "قاطع DC" },
+      { id: "hrc-fuse", en: "HRC Fuse", ar: "فيوز HRC" },
+      { id: "fuse-holder", en: "Fuse Holder", ar: "حامل فيوز" },
+      { id: "elr", en: "Earth Leakage Relay", ar: "ريلاي تسرب أرضي" },
+      { id: "phase-relay", en: "Phase Monitor", ar: "مراقب أطوار" },
+      { id: "rcd-40", en: "RCD 40A (MIDA)", ar: "RCD 40A", size: { w: 150, h: 96 } },
+    ],
+  },
+  {
+    id: "contactors",
+    en: "Contactors / Relays",
+    ar: "كونتاكتور / ريلاي",
+    parts: [
+      { id: "ct1", en: "Contactor", ar: "كونتاكتور" },
+      { id: "ct2", en: "Contactor 2P", ar: "كونتاكتور 2P" },
+      { id: "ct4", en: "Contactor 4P", ar: "كونتاكتور 4P" },
+      { id: "ct4-pro", en: "Contactor 4P 2NO+2NC", ar: "كونتاكتور 4P 2NO+2NC" },
+      { id: "relay", en: "Relay", ar: "ريلاي" },
+      { id: "timer-on", en: "Timer ON", ar: "مؤقت ON" },
+      { id: "timer-off", en: "Timer OFF", ar: "مؤقت OFF" },
+      { id: "mini-contactor", en: "Mini Contactor", ar: "كونتاكتور مصغّر" },
+      { id: "cap-contactor", en: "Capacitor Contactor", ar: "كونتاكتور مكثفات" },
+      { id: "aux-block", en: "Auxiliary Block", ar: "بلوك مساعد" },
+      { id: "interlock", en: "Mechanical Interlock", ar: "قفل ميكانيكي" },
+      { id: "ssr", en: "Solid State Relay", ar: "ريلاي الحالة الصلبة" },
+      { id: "relay8", en: "8-Pin Ice-Cube Relay", ar: "ريلاي 8 بن" },
+      { id: "relay-socket", en: "Relay Socket", ar: "قاعدة ريلاي" },
+      { id: "flasher", en: "Flasher Relay", ar: "ريلاي وامض" },
+    ],
+  },
+  {
+    id: "automation",
+    en: "Automation",
+    ar: "الأتمتة",
+    parts: [
+      { id: "logo230", en: "C.LOGO! 230RCI", ar: "LOGO! 230RCI" },
+      { id: "logo-dm8", en: "LOGO! DM8 24", ar: "LOGO! DM8 24" },
+      { id: "logo-am2", en: "LOGO! AM2", ar: "LOGO! AM2" },
+      { id: "vfd", en: "VFD Drive", ar: "مغير سرعة VFD" },
+      { id: "psu24", en: "24V DC PSU", ar: "باور 24V" },
+      { id: "softstarter", en: "Soft Starter", ar: "بادئ ناعم" },
+      { id: "servo-drive", en: "Servo Drive", ar: "سيرفو درايف" },
+      { id: "pid", en: "PID Controller", ar: "منظم حرارة PID" },
+      { id: "hmi", en: "HMI Panel", ar: "شاشة HMI" },
+      { id: "plc-rack", en: "PLC Rack", ar: "وحدة PLC" },
+      { id: "safety-relay", en: "Safety Relay", ar: "ريلاي أمان" },
+      { id: "io-module", en: "Remote I/O Module", ar: "وحدة I/O" },
+      { id: "eth-switch", en: "Ethernet Switch", ar: "سويتش شبكة" },
+      { id: "smps12", en: "12V DC PSU", ar: "باور 12V" },
+    ],
+  },
+  {
+    id: "buttons",
+    en: "Buttons / Switches",
+    ar: "أزرار / مفاتيح",
+    parts: [
+      { id: "pb-no", en: "PB (NO)", ar: "زرار NO" },
+      { id: "pb-nc", en: "PB (NC)", ar: "زرار NC" },
+      { id: "pb-dual", en: "PB Dual (NO+NC)", ar: "زرار مزدوج" },
+      { id: "estop", en: "E-Stop", ar: "زر طوارئ" },
+      { id: "sel-onoff", en: "Selector ON/OFF", ar: "مفتاح ON/OFF" },
+      { id: "selector", en: "Selector", ar: "سيليكتور" },
+      { id: "sel-102", en: "Selector 1-0-2", ar: "سيليكتور 1-0-2" },
+      { id: "pb-green-light", en: "Illuminated PB Green", ar: "زرار مضيء أخضر" },
+      { id: "pb-red-light", en: "Illuminated PB Red", ar: "زرار مضيء أحمر" },
+      { id: "double-pb", en: "Double Push I/O", ar: "زرار مزدوج" },
+      { id: "key2", en: "Key Switch 2-Pos", ar: "مفتاح بمفتاح" },
+      { id: "joystick", en: "Joystick", ar: "عصا تحكم" },
+      { id: "foot", en: "Foot Switch", ar: "دعاسة قدم" },
+      { id: "toggle", en: "Toggle Switch", ar: "مفتاح توجل" },
+      { id: "cam", en: "Cam Switch", ar: "مفتاح كام" },
+      { id: "estop-key", en: "Key-Release E-Stop", ar: "إيقاف طوارئ بمفتاح" },
+    ],
+  },
+  {
+    id: "sensors",
+    en: "Sensors",
+    ar: "الحساسات",
+    parts: [
+      { id: "limit", en: "Limit Switch", ar: "مفتاح حد", size: { w: 102, h: 100 } },
+      { id: "float", en: "Float Switch", ar: "عوامة", size: { w: 102, h: 100 } },
+      { id: "floatless-level", en: "Floatless Level Switch C61F-GP", ar: "حساس مستوى الماء بدون عوامة", size: { w: 168, h: 168 } },
+      { id: "level-probe", en: "Level Electrode", ar: "مسبار مستوى الماء" },
+      { id: "pressure", en: "Pressure Switch", ar: "حساس ضغط", size: { w: 102, h: 100 } },
+      { id: "temp", en: "Temp Switch", ar: "حساس حرارة", size: { w: 102, h: 100 } },
+      { id: "photo", en: "Photo Sensor", ar: "حساس ضوئي", size: { w: 102, h: 100 } },
+      { id: "prox-ind", en: "Inductive Proximity", ar: "حساس تقارب حثي", size: { w: 102, h: 100 } },
+      { id: "prox-cap", en: "Capacitive Proximity", ar: "حساس تقارب سعوي", size: { w: 102, h: 100 } },
+      { id: "photo-beam", en: "Thru-Beam Photo", ar: "حاجز ضوئي", size: { w: 102, h: 100 } },
+      { id: "encoder", en: "Rotary Encoder", ar: "إنكودر", size: { w: 102, h: 100 } },
+      { id: "thermocouple", en: "Thermocouple", ar: "مزدوج حراري", size: { w: 102, h: 100 } },
+      { id: "pt100", en: "RTD PT100", ar: "حساس PT100", size: { w: 102, h: 100 } },
+      { id: "pressure-tx", en: "Pressure Transmitter", ar: "مرسل ضغط", size: { w: 102, h: 100 } },
+      { id: "flow", en: "Flow Switch", ar: "مفتاح تدفق", size: { w: 102, h: 100 } },
+      { id: "smoke", en: "Smoke Detector", ar: "كاشف دخان", size: { w: 102, h: 100 } },
+      { id: "reed", en: "Door Reed Contact", ar: "رييد باب", size: { w: 102, h: 100 } },
+      { id: "pir", en: "PIR Motion Sensor", ar: "حساس حركة", size: { w: 102, h: 100 } },
+    ],
+  },
+  {
+    id: "signaling",
+    en: "Signaling",
+    ar: "الإشارات",
+    parts: [
+      { id: "light-green", en: "Light Green", ar: "لمبة خضراء" },
+      { id: "light-red", en: "Light Red", ar: "لمبة حمراء" },
+      { id: "light-blue", en: "Light Blue", ar: "لمبة زرقاء" },
+      { id: "light-orange", en: "Light Orange", ar: "لمبة برتقالية" },
+      { id: "light-yellow", en: "Light Yellow", ar: "لمبة صفراء" },
+      { id: "buzzer", en: "Buzzer", ar: "بيزر" },
+      { id: "ind-3ph", en: "3Ph Indicator", ar: "بيان 3 فاز" },
+      { id: "voltmeter", en: "Voltmeter", ar: "فولتميتر" },
+      { id: "voltmeter3", en: "Voltmeter 3Φ", ar: "فولتميتر 3 فاز" },
+      { id: "ct", en: "CT", ar: "محول تيار" },
+      { id: "ammeter", en: "Ammeter", ar: "أميتر" },
+      { id: "tower", en: "Stack Light Tower", ar: "برج إشارة" },
+      { id: "beacon", en: "Rotating Beacon", ar: "منارة دوارة" },
+      { id: "horn", en: "Horn / Siren", ar: "بوق / صفارة" },
+      { id: "bell", en: "Electric Bell", ar: "جرس كهربائي" },
+      { id: "kwh", en: "kWh Energy Meter", ar: "عداد طاقة" },
+      { id: "pf-meter", en: "Power Factor Meter", ar: "عداد معامل قدرة" },
+      { id: "hour-meter", en: "Hour Counter", ar: "عداد ساعات" },
+      { id: "analog-a", en: "Analog Ammeter", ar: "أميتر تناظري" },
+      { id: "analog-v", en: "Analog Voltmeter", ar: "فولتميتر تناظري" },
+    ],
+  },
+  {
+    id: "loads",
+    en: "Loads",
+    ar: "الأحمال",
+    parts: [
+      { id: "motor3", en: "Motor 3P", ar: "موتور 3 فاز" },
+      { id: "motor1", en: "Motor 1P", ar: "موتور 1 فاز" },
+      { id: "stardelta", en: "Star-Delta", ar: "ستار دلتا" },
+      { id: "motor-photo", en: "Motor Photo", ar: "صورة موتور" },
+      { id: "pump", en: "Water Pump", ar: "مضخة مياه" },
+      { id: "lamp", en: "Lamp", ar: "لمبة إضاءة" },
+      { id: "dc-motor", en: "DC Motor", ar: "موتور تيار مستمر" },
+      { id: "servo-motor", en: "Servo Motor", ar: "سيرفو موتور" },
+      { id: "fan-axial", en: "Axial Fan", ar: "مروحة محورية" },
+      { id: "compressor", en: "Compressor", ar: "كمبروسر" },
+      { id: "conveyor", en: "Conveyor Belt", ar: "سير ناقل" },
+      { id: "heater", en: "Heater Element", ar: "سخان" },
+      { id: "led-bulb", en: "LED Bulb", ar: "لمبة LED" },
+      { id: "tube-light", en: "Fluorescent Tube", ar: "أنبوب فلورسنت" },
+      { id: "solenoid", en: "Solenoid Valve", ar: "صمام ملف لولبي" },
+      { id: "electromagnet", en: "Electromagnet", ar: "مغناطيس كهربائي" },
+    ],
+  },
+  {
+    id: "wiring",
+    en: "Wiring",
+    ar: "التوصيل",
+    parts: [
+      { id: "term1", en: "Terminal x1", ar: "ترمنال x1" },
+      { id: "term2", en: "Terminal x2", ar: "ترمنال x2" },
+      { id: "term3", en: "Terminal x3", ar: "ترمنال x3" },
+      { id: "term4", en: "Terminal x4", ar: "ترمنال x4" },
+      { id: "neutral-link", en: "Neutral Link", ar: "بار محايد" },
+      { id: "earth-link", en: "Earth Link", ar: "بار أرضي" },
+      { id: "busbar", en: "Busbar", ar: "بسبار" },
+      { id: "comb", en: "Comb Busbar", ar: "بسبار مشط" },
+      { id: "junction", en: "Junction", ar: "علبة تجميع" },
+      { id: "duct", en: "Wire Duct", ar: "مجرى سلك" },
+      { id: "duct-wide", en: "Wire Duct Wide", ar: "مجرى سلك عريض" },
+      { id: "term6", en: "Terminal x6", ar: "ترمنال x6", size: { w: 160, h: 90 } },
+      { id: "term12", en: "Terminal x12", ar: "ترمنال x12", size: { w: 280, h: 90 } },
+      { id: "dist-block", en: "Distribution Block", ar: "بلوك توزيع" },
+      { id: "earth-bar", en: "Earth Bar", ar: "بار أرضي" },
+      { id: "end-bracket", en: "End Bracket", ar: "مثبت نهاية" },
+      { id: "plug3", en: "Industrial Plug 3P", ar: "فيشة صناعية 3P" },
+      { id: "socket3", en: "Industrial Socket 3P", ar: "مقبس صناعي 3P" },
+      { id: "gland", en: "Cable Gland", ar: "جلاند كابل" },
+      { id: "rail-bar", en: "Screw Busbar Rail", ar: "بار توزيع بمسامير", size: { w: 440, h: 56 } },
+      { id: "tb-blue", en: "Terminal Blue", ar: "ترمنال أزرق", size: { w: 54, h: 88 } },
+      { id: "tb-green", en: "Terminal Green", ar: "ترمنال أخضر", size: { w: 54, h: 88 } },
+      { id: "tb-amber", en: "Terminal Amber", ar: "ترمنال برتقالي", size: { w: 54, h: 88 } },
+      { id: "tb-red", en: "Terminal Red", ar: "ترمنال أحمر", size: { w: 54, h: 88 } },
+    ],
+  },
+  {
+    id: "structure",
+    en: "Structure",
+    ar: "الهيكل",
+    parts: [
+      { id: "panel-s", en: "Panel S", ar: "بانل S" },
+      { id: "panel-m", en: "Panel M", ar: "بانل M" },
+      { id: "panel-l", en: "Panel L", ar: "بانل L" },
+      { id: "box", en: "Breaker Box", ar: "صندوق قواطع" },
+      { id: "din", en: "DIN Rail", ar: "سكة DIN" },
+      { id: "textlabel", en: "Text Label", ar: "نص تسمية" },
+      { id: "cabinet", en: "Floor Cabinet", ar: "دولاب قائم" },
+      { id: "subplate", en: "Mounting Plate", ar: "صفيحة تركيب" },
+      { id: "vent-fan", en: "Cabinet Vent Fan", ar: "مروحة تهوية" },
+      { id: "insulator", en: "Standoff Insulator", ar: "عازل عمودي" },
+      { id: "warning", en: "Warning Sign", ar: "لوحة تحذير" },
+      { id: "blanking", en: "Blanking Plug", ar: "سدادة فتحة" },
+      { id: "dist-panel", en: "Distribution Box", ar: "صندوق توزيع", size: { w: 720, h: 430 } },
+    ],
+  },
+  {
+    id: "units",
+    en: "Ready-Made Units",
+    ar: "وحدات جاهزة",
+    parts: [
+      { id: "ats", en: "ATS (3-Source)", ar: "ATS (3 مصادر)" },
+      { id: "ats2", en: "ATS (2-Source)", ar: "ATS (مصدرين)" },
+      { id: "dol-unit", en: "DOL Starter Panel", ar: "لوحة تشغيل DOL" },
+      { id: "sd-unit", en: "Star-Delta Panel", ar: "لوحة ستار دلتا" },
+      { id: "db-unit", en: "Distribution Board", ar: "لوحة توزيع" },
+      { id: "pump-unit", en: "Pump Control Panel", ar: "لوحة تحكم طلمبة" },
+    ],
+  },
+];
+
+export const ALL_PARTS: Part[] = SECTIONS.flatMap((s) => s.parts);
+
+export const partById = (id: string): Part | undefined =>
+  ALL_PARTS.find((p) => p.id === id);
